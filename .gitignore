@@ -17,6 +17,10 @@
 /.next/
 /out/
 
+# local design review artifacts
+/.impeccable/
+/.taste-skill/
+
 # production
 /build
 
