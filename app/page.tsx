@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import ProductCard from "./components/ProductCard";
 import { products } from "./data/products";
+
+export const metadata: Metadata = {
+  title: "Shipyard — Field Goods for the Long Way Home",
+  description:
+    "A considered kit for open air and unhurried days. Explore the Shipyard field goods collection.",
+};
 
 export default function Home() {
   return (

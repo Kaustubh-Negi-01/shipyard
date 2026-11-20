@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -6,6 +7,15 @@ import { getProduct, products } from "../../data/products";
 type ProductPageProps = {
   params: Promise<{ id: string }>;
 };
+
+const Reviews = dynamic(() => import("./Reviews"), {
+  loading: () => (
+    <div className="reviews-loading" aria-live="polite">
+      <div className="reviews-loading__spinner" />
+      <p>Loading community field notes...</p>
+    </div>
+  ),
+});
 
 export function generateStaticParams() {
   return products.map((product) => ({ id: product.id }));
@@ -34,6 +44,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <nav className="site-nav" aria-label="Product navigation">
           <Link href="/#collection">The collection</Link>
           <a href="#product-details">Product details</a>
+          <a href="#reviews-title">Field reviews</a>
           <Link className="nav-mark" href="/" aria-label="Back to home">↗</Link>
         </nav>
       </header>
@@ -64,6 +75,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </div>
           <p className="detail-footnote">Thoughtfully chosen. Ready to go again.</p>
         </article>
+      </div>
+
+      <div className="detail-reviews-wrap">
+        <Reviews productId={product.id} productName={product.name} />
       </div>
     </main>
   );
