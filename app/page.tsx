@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import ProductCard from "./components/ProductCard";
 import { products } from "./data/products";
+
+const basePath = process.env.NODE_ENV === "production" ? "/shipyard" : "";
 
 export const metadata: Metadata = {
   title: "Shipyard — Field Goods for the Long Way Home",
@@ -32,6 +35,14 @@ export default function Home() {
           </div>
         </div>
         <div className="hero-image" role="img" aria-label="A quiet path leading through a mountain forest">
+          <Image
+            src={`${basePath}/hero.webp`}
+            alt="A quiet path leading through a mountain forest"
+            fill
+            priority
+            sizes="(max-width: 760px) 100vw, 85vw"
+            className="hero-img"
+          />
           <span className="image-caption">A trail worth taking · 46° 51′ N</span>
         </div>
         <div className="hero-index"><span>Field notes</span><span>Out there, at your pace</span><span>↓</span></div>
@@ -53,7 +64,16 @@ export default function Home() {
       </section>
 
       <section className="manifesto" id="our-way" aria-labelledby="manifesto-title">
-        <div className="manifesto-image" role="img" aria-label="Morning sun reaches into a forest clearing" />
+        <div className="manifesto-image" role="img" aria-label="Morning sun reaches into a forest clearing">
+          <Image
+            src={`${basePath}/manifesto.webp`}
+            alt="Morning sun reaches into a forest clearing"
+            fill
+            loading="lazy"
+            sizes="(max-width: 760px) 100vw, 50vw"
+            className="hero-img"
+          />
+        </div>
         <div className="manifesto-copy">
           <h2 id="manifesto-title">Less gear.<br />More outside.</h2>
           <p>We believe the best day rarely goes to plan. So we make honest, hardworking pieces that leave you free to follow it wherever it leads.</p>

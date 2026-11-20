@@ -4,9 +4,10 @@ import type { Product } from "../data/products";
 
 type ProductCardProps = {
   product: Product;
+  priority?: boolean;
 };
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, priority = false }: ProductCardProps) {
   return (
     <article className="product-card">
       <Link className="product-card__link" href={`/products/${product.id}`}>
@@ -17,6 +18,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             alt={product.imageAlt}
             width={900}
             height={1125}
+            priority={priority}
             sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw"
           />
           {product.badge ? <span className="product-card__badge">{product.badge}</span> : null}
